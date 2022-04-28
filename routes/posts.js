@@ -17,18 +17,16 @@ router.post('/', async (req, res, next) => {
       })
     }
 
-    await Post.create({
+    const newPost = await Post.create({
       content,
       image,
       likes,
     })
 
-    const data = await Post.find()
-
     res.status(201).json({
       status: 'success',
       message: '建立成功',
-      data
+      data: newPost
     })
 
   } catch (error) {
